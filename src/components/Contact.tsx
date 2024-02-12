@@ -12,7 +12,7 @@ const Contact = () => {
       </p>
       <div className="connect-div-icons">
         <a
-          href="https://twitter.com/yourTwitterHandle"
+          href="https://twitter.com/PaulCapo510"
           target="_blank"
           rel="noopener noreferrer"
         >

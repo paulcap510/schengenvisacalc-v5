@@ -3,6 +3,7 @@ import './Login.css';
 const Login = () => {
   return (
     <div className="login-container">
+      <div className="overlay">Feature coming soon</div>
       <div className="login-heading">Login</div>
       <form className="login-form">
         <input

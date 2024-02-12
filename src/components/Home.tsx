@@ -127,7 +127,6 @@ const Home = () => {
     calculateDaysRemaining(newTotalDays);
   };
 
-  // calc days remaining
   const calculateDaysRemaining = (totalDays: number) => {
     const remainingDays = 90 - totalDays;
     setDaysRemaining(remainingDays.toString());
