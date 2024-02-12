@@ -144,6 +144,10 @@ const Home = () => {
       <div className="home-container">
         <div className="date-input-div">
           <h1>Schengen Visa Calculator</h1>
+          <p>
+            Site is for informational purposes only. Please see our{' '}
+            <a href="/about">usage statement.</a>
+          </p>
           <div className="date-wrapper">
             <div className="dates-div">
               <h4>
