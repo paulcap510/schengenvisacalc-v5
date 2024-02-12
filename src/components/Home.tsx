@@ -8,11 +8,18 @@ interface Trip {
   country: string;
 }
 
-function formatDate(date: Date) {
-  const year = date.getFullYear();
+// function formatDate(date: Date) {
+//   const year = date.getFullYear();
+//   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+//   const day = date.getDate().toString().padStart(2, '0');
+//   return `${year}-${month}-${day}`;
+// }
+
+function formatDateMMDDYYYY(date: Date) {
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
-  return `${year}-${month}-${day}`;
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
 const Home = () => {
@@ -20,7 +27,7 @@ const Home = () => {
   const [exitDate, setExitDate] = useState<string>('');
   const [today, setToday] = useState<Date>(new Date());
   const [sixMonthsAgo, setSixMonthsAgo] = useState<Date>(new Date());
-  const [formattedDate, setFormattedDate] = useState<string>('');
+  // const [formattedDate, setFormattedDate] = useState<string>('');
   const [formattedSixMonthsAgo, setFormattedSixMonthsAgo] =
     useState<string>('');
   const [trips, setTrips] = useState<Trip[]>([]);
@@ -67,8 +74,8 @@ const Home = () => {
     sixMonthsAgoDate.setDate(sixMonthsAgoDate.getDate() - 180);
     setSixMonthsAgo(sixMonthsAgoDate);
 
-    setFormattedDate(formatDate(now));
-    setFormattedSixMonthsAgo(formatDate(sixMonthsAgoDate));
+    // setFormattedDate(formatDate(now));
+    setFormattedSixMonthsAgo(formatDateMMDDYYYY(sixMonthsAgoDate));
   }, []);
 
   const addTrip = () => {
@@ -160,8 +167,8 @@ const Home = () => {
               min={formattedSixMonthsAgo}
               max={
                 allowFuture
-                  ? formatDate(new Date(9999, 11, 31))
-                  : formatDate(today)
+                  ? formatDateMMDDYYYY(new Date(9999, 11, 31))
+                  : formatDateMMDDYYYY(today)
               }
             />
             <input
@@ -172,8 +179,8 @@ const Home = () => {
               min={formattedSixMonthsAgo}
               max={
                 allowFuture
-                  ? formatDate(new Date(9999, 11, 31))
-                  : formatDate(today)
+                  ? formatDateMMDDYYYY(new Date(9999, 11, 31))
+                  : formatDateMMDDYYYY(today)
               }
             />
 
@@ -250,8 +257,12 @@ const Home = () => {
                   {trips.map((trip, index) => (
                     <tr key={index}>
                       <td data-th="Trip #">{index + 1}</td>
-                      <td data-th="Entry Date">{trip.entryDate}</td>
-                      <td data-th="Exit Date">{trip.exitDate}</td>
+                      <td data-th="Entry Date">
+                        {formatDateMMDDYYYY(new Date(trip.entryDate))}
+                      </td>{' '}
+                      <td data-th="Exit Date">
+                        {formatDateMMDDYYYY(new Date(trip.exitDate))}
+                      </td>{' '}
                       <td data-th="Days">{trip.dateDifference}</td>
                       <td data-th="Country">{trip.country}</td>
                     </tr>
