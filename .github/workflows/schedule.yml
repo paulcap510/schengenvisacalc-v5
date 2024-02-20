@@ -1,0 +1,13 @@
+name: Schedule Netlify Function
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # This example runs at 8 AM UTC every day
+
+jobs:
+  trigger-netlify-function:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger Netlify Function
+      run: curl -X POST https://www.calculatevisa.com/.netlify/functions/captureEmail
+
